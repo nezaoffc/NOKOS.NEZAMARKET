@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neza Market - NOKOS Terlengkap</title>
+    <style>
+        /* Reset dan Styling Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6e6e6;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header dan Navigasi */
+        header {
+            background: rgba(10, 10, 35, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #64ffda;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #f9a826;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f9a826;
+        }
+
+        /* Animasi Welcome */
+        .welcome-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(15, 52, 96, 0.7), rgba(22, 33, 62, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a2e"/><path d="M0 0L100 100M100 0L0 100" stroke="%230f3460" stroke-width="1"/></svg>');
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .welcome-text::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #64ffda;
+            animation: typing 3s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        .welcome-subtext {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #b8b8b8;
+            opacity: 0;
+            animation: fadeIn 1s ease 3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #e94560, #f9a826);
+            color: blue;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 3.5s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 69, 96, 0.6);
+        }
+
+        /* Bagian Produk */
+        .products-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #64ffda;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #e94560, transparent);
+            bottom: -10px;
+            left: 20%;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(233, 69, 96, 0.5);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #e94560, #f9a826);
+        }
+
+        .country {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #f9a826;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e94560;
+            margin-bottom: 5px;
+        }
+
+        .price-detail {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+        }
+
+        /* Bagian Payment */
+        .payment-section {
+            margin: 60px 0;
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .payment-option {
+            background: rgba(40, 40, 70, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .payment-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #f9a826;
+        }
+
+        .payment-detail {
+            margin-bottom: 8px;
+        }
+
+        /* Bagian Informasi */
+        .info-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .warning-box {
+            background: rgba(233, 69, 96, 0.2);
+            border-left: 5px solid #e94560;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+
+        .channel-link {
+            display: inline-block;
+            background: rgba(37, 211, 102, 0.2);
+            color: #25d366;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 0;
+            transition: all 0.3s;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        .channel-link:hover {
+            background: rgba(37, 211, 102, 0.3);
+            transform: scale(1.05);
+        }
+
+        .owner-contact {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+        }
+
+        .owner-number {
+            font-size: 1.5rem;
+            color: #f9a826;
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background: rgba(10, 10, 35, 0.8);
+            border-top: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        /* Animasi Kustom */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { background-color: transparent }
+            50% { background-color: #f9a826 }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1 }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NEZA <span>MARKET</span></div>
+                <ul>
+                    <li><a href="#produk">Produk</a></li>
+                    <li><a href="#payment">Payment</a></li>
+                    <li><a href="#info">Info</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="welcome-section">
+            <h1 class="welcome-text">HALLO SELAMAT DATANG JURAGAN YANG TERHORMAT</h1>
+            <p class="welcome-subtext">NOKOS adalah singkatan dari Nomor Kosong WhatsApp yang bisa digunakan dalam bentuk apapun! 😍 Dan banyak fungsi fungsi lain nya 😉</p>
+            <a href="#produk" class="cta-button">Lihat Produk</a>
+        </section>
+
+        <section class="products-section" id="produk">
+            <h2 class="section-title">PRODUK NOKOS NEZA STORE</h2>
+            
+            <div class="warning-box">
+                <strong>WARNING! :</strong> Sebelum membeli silakan masuk saluran owner terlebih dahulu agar mengetahui stock nya masih atau tidak!
+                <a href="https://whatsapp.com/channel/0029VbAaWheJZg42G67Yw033" class="channel-link" target="_blank">Saluran Owner</a>
+            </div>
+            
+            <p>Terimakasih atas pengertian nya😊☺ silakan lanjut.</p>
+            
+            <div class="product-grid">
+                <!-- Produk akan ditambahkan dengan JavaScript -->
+            </div>
+        </section>
+
+        <section class="payment-section" id="payment">
+            <h2 class="section-title">MENU PAYMENT</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Pilihlah payment yang anda ingin! QRIS bisa minta melalui WhatsApp owner ya! 😉</p>
+            
+            <div class="payment-options">
+                <div class="payment-option">
+                    <div class="payment-title">DANA</div>
+                    <div class="payment-detail">085760854726</div>
+                    <div class="payment-detail">A/N : GR** *******</div>
+                </div>
+                
+                <div class="payment-option">
+                    <div class="payment-title">GOPAY</div>
+                    <div class="payment-detail">085789458403</div>
+                    <div class="payment-detail">A/N : NEZA</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;">Jika sudah silakan hubungi owner agar pesanan nya di konfirmasi jangan lupa screenshoot transaksi nya agar terhindar dari penipuan!</p>
+        </section>
+
+        <section class="info-section" id="info">
+            <h2 class="section-title">INFORMASI PENTING</h2>
+            
+            <div class="owner-contact">
+                <h3>Kontak Owner</h3>
+                <div class="owner-number">085760854726</div>
+                <p>Hubungi owner untuk konfirmasi pesanan dan informasi lebih lanjut</p>
+            </div>
+            
+            <p>Silakan masuk saluran testimoni mimin agar tidak kena clone! 😅</p>
+            <a href="https://whatsapp.com/channel/0029VbAkrKo7YSdBLcOvSM1R" class="channel-link" target="_blank">Saluran Testimoni</a>
+            
+            <p style="margin-top: 20px;">Semua pembelian alreff jika ada kendala😍 Web ini dibuat oleh Neza agar pembeli simple saat ingin membeli NOKOS nya dan harga sudah tertata rapi! 😅</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Neza Market - NOKOS Terlengkap dan Terpercaya</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data produk
+        const products = [
+            { country: "MURID NOKOS", price: "Rp3.000" },
+            { country: "INDONESIA", price: "5K/5RIBU" },
+            { country: "RUSIA", price: "18K/18RIBU" },
+            { country: "UKRAINE", price: "10K/10RIBU" },
+            { country: "KAZAKHSTAN", price: "30K/30RIBU" },
+            { country: "CHINA", price: "10K/10RIBU" },
+            { country: "PHILIPINES", price: "6K/6RIBU" },
+            { country: "MYANMAR", price: "10K/10RIBU" },
+            { country: "MALAYSIA", price: "13K/13RIBU" },
+            { country: "KENYA", price: "5K/5RIBU" },
+            { country: "TANZANIA", price: "6K/6RIBU" },
+            { country: "ISRAEL", price: "13K/13RIBU" },
+            { country: "HONGKONG", price: "6K/6RIBU" },
+            { country: "VIETNAM", price: "6K/6RIBU" },
+            { country: "POLAND", price: "30K/30RIBU" },
+            { country: "ENGLAND", price: "13K/13RIBU" },
+            { country: "INDIA", price: "18K/18RIBU" },
+            { country: "CAMBODIA", price: "10K/10RIBU" },
+            { country: "KYRGYZSTAN", price: "30K/30RIBU" },
+            { country: "MADAGASCAR", price: "8K/8RIBU" },
+            { country: "DCONGO", price: "7K/7RIBU" },
+            { country: "NIGERIA", price: "7K/7RIBU" },
+            { country: "MACAO", price: "13K/13RIBU" },
+            { country: "EGYPT", price: "6K/5RIBU" },
+            { country: "IRELAND", price: "18K/18RIBU" },
+            { country: "LAOS", price: "9K/9RIBU" },
+            { country: "HAITI", price: "8K/8RIBU" },
+            { country: "IVORY", price: "10K/10RIBU" },
+            { country: "GAMBIA", price: "8K/8RIBU" },
+            { country: "SERBIA", price: "8K/8RIBU" },
+            { country: "YEMEN", price: "12K/12RIBU" },
+            { country: "SOUTHAFRICA", price: "5K/5RIBU" },
+            { country: "ROMANIA", price: "15K/15RIBU" },
+            { country: "COLOMBIA", price: "8K/8RIBU" },
+            { country: "ESTONIA", price: "13K/13RIBU" },
+            { country: "AZERBAIJAN", price: "10K/10RIBU" },
+            { country: "CANADA", price: "7K/7RIBU" },
+            { country: "MOROCCO", price: "7K/7RIBU" },
+            { country: "GHANA", price: "5K/RIBU" },
+            { country: "ARGENTINIA", price: "10K/10RIBU" },
+            { country: "UZBEKISTAN", price: "5K/5RIBU" },
+            { country: "CAMEROON", price: "7K/7RIBU" },
+            { country: "CHAD", price: "7K/7RIBU" },
+            { country: "GERMANY", price: "20K/20RIBU" },
+            { country: "LITHUANIA", price: "20K/20RIBU" },
+            { country: "CROATIA", price: "24K/24RIBU" },
+            { country: "SWEDEN", price: "18K/18RIBU" },
+            { country: "IRAQ", price: "8K/8RIBU" },
+            { country: "NETHERLANDS", price: "33K/33RIBU" },
+            { country: "LATVIA", price: "13K/13RIBU" },
+            { country: "AUSTRIA", price: "30K/30RIBU" },
+            { country: "BELARUS", price: "17K/17RIBU" },
+            { country: "THAILAND", price: "11K/11RIBU" },
+            { country: "SAUDIARABIA", price: "43K/43RIBU" },
+            { country: "MEXICO", price: "37K/37RIBU" },
+            { country: "TAIWAN", price: "25K/25RIBU" },
+            { country: "SPAIN", price: "33K/33RIBU" },
+            { country: "IRAN", price: "7K/7RIBU" },
+            { country: "ALGERIA", price: "8K/8RIBU" },
+            { country: "SLOVENIA", price: "13K/13RIBU" },
+            { country: "BANGLADESH", price: "13K/13RIBU" },
+            { country: "SENEGAL", price: "7K/7RIBU" },
+            { country: "TURKEY", price: "20K/20RIBU" },
+            { country: "CZECH", price: "20K/20RIBU" },
+            { country: "SRILANKA", price: "15K/15RIBU" },
+            { country: "PERU", price: "13K/13RIBU" },
+            { country: "PAKISTAN", price: "10K/10RIBU" },
+            { country: "NEWZEALAND", price: "30K/30RIBU" },
+            { country: "GIBRALTAR", price: "53K/53RIBU" },
+            { country: "MALTA", price: "17K/17RIBU" },
+            { country: "SINGAPORE", price: "37K/37RIBU" },
+            { country: "PALESTINE", price: "14K/14RIBU" },
+            { country: "USA", price: "18K/18RIBU" },
+            { country: "CAPEVERDE", price: "8K/8RIBU" },
+            { country: "NEWCALEDONIA", price: "8K/8RIBU" },
+            { country: "SEYCHELIES", price: "10K/10K" },
+            { country: "JAPAN", price: "18K/18RIBU" },
+            { country: "ARUBA", price: "44K/44RIBU" },
+            { country: "SOUTHSUDAN", price: "13K/13RIBU" },
+            { country: "ERITREA", price: "10K/10RIBU" },
+            { country: "AUSTRALIA", price: "35K/35RIBU" }
+        ];
+
+        // Fungsi untuk menampilkan produk
+        function displayProducts() {
+            const productGrid = document.querySelector('.product-grid');
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="country">${product.country}</div>
+                    <div class="price">${product.price}</div>
+                    <div class="price-detail">NOKOS ${product.country}</div>
+                `;
+                
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        window.onload = displayProducts;
+    </script>
+</body>
+</html>
